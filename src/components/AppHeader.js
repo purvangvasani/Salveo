@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import {
   CContainer,
   CDropdown,
@@ -42,6 +43,8 @@ const AppHeader = () => {
     })
   }, [])
 
+  const currentLocation = useLocation().pathname;
+  
   return (
     <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
@@ -51,7 +54,7 @@ const AppHeader = () => {
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
-        <CHeaderNav className="d-none d-md-flex">
+        {/* <CHeaderNav className="d-none d-md-flex">
           <CNavItem>
             <CNavLink to="/dashboard" as={NavLink}>
               Dashboard
@@ -63,8 +66,8 @@ const AppHeader = () => {
           <CNavItem>
             <CNavLink href="#">Settings</CNavLink>
           </CNavItem>
-        </CHeaderNav>
-        <CHeaderNav className="ms-auto">
+        </CHeaderNav> */}
+        {/* <CHeaderNav className="ms-auto">
           <CNavItem>
             <CNavLink href="#">
               <CIcon icon={cilBell} size="lg" />
@@ -80,12 +83,12 @@ const AppHeader = () => {
               <CIcon icon={cilEnvelopeOpen} size="lg" />
             </CNavLink>
           </CNavItem>
-        </CHeaderNav>
+        </CHeaderNav> */}
         <CHeaderNav>
-          <li className="nav-item py-1">
+          {/* <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
-          </li>
-          <CDropdown variant="nav-item" placement="bottom-end">
+          </li> */}
+          {/* <CDropdown variant="nav-item" placement="bottom-end">
             <CDropdownToggle caret={false}>
               {colorMode === 'dark' ? (
                 <CIcon icon={cilMoon} size="lg" />
@@ -124,16 +127,18 @@ const AppHeader = () => {
                 <CIcon className="me-2" icon={cilContrast} size="lg" /> Auto
               </CDropdownItem>
             </CDropdownMenu>
-          </CDropdown>
-          <li className="nav-item py-1">
+          </CDropdown> */}
+          {/* <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
-          </li>
+          </li> */}
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      <CContainer className="px-4" fluid>
-        <AppBreadcrumb />
-      </CContainer>
+      {currentLocation.split('/')[currentLocation.split('/').length - 1] !== 'dashboard' ? 
+        <CContainer className="px-4" fluid>
+          <AppBreadcrumb />
+        </CContainer> : null
+      }
     </CHeader>
   )
 }
