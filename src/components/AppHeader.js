@@ -48,16 +48,16 @@ const AppHeader = () => {
   return (
     <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
-        <CHeaderToggler
+        {/* <CHeaderToggler
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
           style={{ marginInlineStart: '-14px' }}
         >
           <CIcon icon={cilMenu} size="lg" />
-        </CHeaderToggler>
+        </CHeaderToggler> */}
         {/* <CHeaderNav className="d-none d-md-flex">
           <CNavItem>
-            <CNavLink to="/dashboard" as={NavLink}>
-              Dashboard
+            <CNavLink to="/home" as={NavLink}>
+              Home
             </CNavLink>
           </CNavItem>
           <CNavItem>
@@ -84,7 +84,7 @@ const AppHeader = () => {
             </CNavLink>
           </CNavItem>
         </CHeaderNav> */}
-        <CHeaderNav>
+        <CHeaderNav className='ms-auto'>
           {/* <li className="nav-item py-1">
             <div className="vr h-100 mx-2 text-body text-opacity-75"></div>
           </li> */}
@@ -134,7 +134,7 @@ const AppHeader = () => {
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      {currentLocation.split('/')[currentLocation.split('/').length - 1] !== 'dashboard' ? 
+      {currentLocation.split('/')[currentLocation.split('/').length - 1] !== 'home' ? 
         <CContainer className="px-4" fluid>
           <AppBreadcrumb />
         </CContainer> : null

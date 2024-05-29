@@ -1,18 +1,30 @@
-import { CButton, CCard, CCardBody, CCardFooter, CCardHeader, CCol, CForm, CFormCheck, CFormInput, CFormLabel, CFormSelect, CRow } from '@coreui/react';
-import React from 'react';
+import React from 'react'
+import { 
+  CButton, CCard, 
+  CCardBody, CCardFooter, 
+  CCardHeader, CCol, 
+  CForm, CFormInput, 
+  CFormLabel, CFormSelect, CRow } from '@coreui/react'
 
-const AddUser = () => {
-
+const Profile = () => {
   return (
     <>
       <CRow>
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader>
-              <strong>User</strong> <small>Form</small>
+              <strong>Profile</strong> <small>(Purvang Vasani)</small>
             </CCardHeader>
             <CCardBody>
               <CForm className="row g-3">
+                <CCol xs={6}>
+                  <CFormLabel htmlFor="inputFirstName">First Name</CFormLabel>
+                  <CFormInput id="inputFirstName" placeholder="First Name" />
+                </CCol>
+                <CCol xs={6}>
+                  <CFormLabel htmlFor="inputLastName">Last Name</CFormLabel>
+                  <CFormInput id="inputLastName" placeholder="Last Name" />
+                </CCol>
                 <CCol xs={12}>
                   <CFormLabel htmlFor="inputAadhaar">Aadhaar Number</CFormLabel>
                   <CFormInput id="inputAadhaar" placeholder="Eg: 6254 6524 6524" />
@@ -52,7 +64,7 @@ const AddUser = () => {
             </CCardBody>
             <CCardFooter>
               <CButton className="float-end" color="primary" type="submit">
-                Submit
+                Save
               </CButton>
             </CCardFooter>
           </CCard>
@@ -62,4 +74,4 @@ const AddUser = () => {
   )
 }
 
-export default AddUser
+export default Profile

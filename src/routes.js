@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Home = React.lazy(() => import('./views/home/Home'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -51,12 +51,21 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 // Users
 const Users = React.lazy(() => import('./views/users/Users'))
 const AddUser = React.lazy(() => import('./views/users/add/AddUser'))
+// Profile
+const Profile = React.lazy(() => import('./views/profile/Profile'))
+// Settings
+const Settings = React.lazy(()=> import('./views/settings/Settings'))
+// Search
+const Search = React.lazy(()=> import('./views/search/Search'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/home', name: 'Home', element: Home },
+  { path: '/search', name: 'Search', element: Search },
+  { path: '/settings', name: 'Settings', element: Settings },
+  { path: '/profile', name: 'Profile', element: Profile },
   { path: '/users', name: 'Users', element: Users },
   { path: '/users/add', name: 'Add', element: AddUser },
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
