@@ -54,23 +54,27 @@ const Home = () => {
     });
   }
 
-  const getData = () => {
-    fetch('backend-data.json'
-      , {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }
-    )
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        let data = searchRecords(myJson.users, searchedItem);
-        console.log(data)
-        setResultList(data)
-      });
+  const getData = async () => {
+    let staticData = await import('../../../data/backend-data.json').then((res) => res.default);
+    staticData = searchRecords(staticData.users, searchedItem);
+    console.log(staticData)
+    setResultList(staticData)
+    // fetch('backend-data.json'
+    //   , {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json'
+    //     }
+    //   }
+    // )
+    //   .then(function (response) {
+    //     return response.json();
+    //   })
+    //   .then(function (myJson) {
+    //     let data = searchRecords(myJson.users, searchedItem);
+    //     console.log(data)
+    //     setResultList(data)
+    //   });
   }
 
   return (
