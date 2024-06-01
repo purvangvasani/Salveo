@@ -7,12 +7,19 @@ import {
   CButton,
   CCol, CDropdown, CDropdownHeader,
   CDropdownItem, CDropdownMenu, CDropdownToggle,
+  CModal,
+  CModalBody,
+  CModalFooter,
+  CModalHeader,
+  CModalTitle,
   CRow, CTable, CTableBody, CTableDataCell,
   CTableHead, CTableHeaderCell, CTableRow
 } from '@coreui/react';
 
 const Search = () => {
   const [resultList, setResultList] = useState([])
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleteRecord, setDeleteRecord] = useState({})
 
   const searchedData = useLocation().state;
 
@@ -31,6 +38,12 @@ const Search = () => {
 
   const goTo = () => {
     navigate('/users/add');
+  }
+
+  const deleteRecordHandler = (record) => {
+    console.log(deleteRecord)
+    setDeleteRecord(record)
+    setShowDeleteModal(!showDeleteModal)
   }
 
   useEffect(() => {
@@ -89,7 +102,7 @@ const Search = () => {
                           <CIcon icon={cilPencil} className="me-2" />
                           Edit
                         </CDropdownItem>
-                        <CDropdownItem href="/settings">
+                        <CDropdownItem className='pointer' onClick={() => deleteRecordHandler(data)}>
                           <CIcon icon={cilTrash} className="me-2" />
                           Delete
                         </CDropdownItem>
@@ -107,6 +120,20 @@ const Search = () => {
           </CTable>
         </CCol>
       </CRow>
+      <CModal backdrop="static" visible={showDeleteModal} onClose={() => {setShowDeleteModal(false); setDeleteRecord({});}}>
+        <CModalHeader>
+          <CModalTitle>Delete Record (<small>{deleteRecord.firstname} {deleteRecord.lastname}</small>)</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          Are you sure you want to delete the records?
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="secondary" onClick={() => {setShowDeleteModal(false); setDeleteRecord({});}}>
+            Close
+          </CButton>
+          <CButton color="danger">Delete</CButton>
+        </CModalFooter>
+      </CModal>
     </>
   )
 }
