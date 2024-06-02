@@ -57,13 +57,15 @@ const Profile = React.lazy(() => import('./views/profile/Profile'))
 const Settings = React.lazy(()=> import('./views/settings/Settings'))
 // Search
 const Search = React.lazy(()=> import('./views/search/Search'))
+const View = React.lazy(()=> import('./views/search/view/View'))
 
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/home', name: 'Home', element: Home },
-  { path: '/search', name: 'Search', element: Search },
+  { path: '/records', name: 'Records', element: Search },
+  { path: '/records/view', name: 'View', element: View },
   { path: '/settings', name: 'Settings', element: Settings },
   { path: '/profile', name: 'Profile', element: Profile },
   { path: '/users', name: 'Users', element: Users },

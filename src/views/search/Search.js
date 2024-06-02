@@ -41,9 +41,12 @@ const Search = () => {
   }
 
   const deleteRecordHandler = (record) => {
-    console.log(deleteRecord)
     setDeleteRecord(record)
     setShowDeleteModal(!showDeleteModal)
+  }
+
+  const viewRecordHandler = (idx) => {
+    navigate('/records/view', { id: idx })
   }
 
   useEffect(() => {
@@ -87,7 +90,7 @@ const Search = () => {
               {resultList.length > 0 && resultList.map((data, index) =>
                 <CTableRow key={index}>
                   <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
-                  <CTableDataCell>{data.firstname + " " + data.lastname}</CTableDataCell>
+                  <CTableDataCell><a className='pointer text-dec-underline' onClick={()=> viewRecordHandler(index)}>{data.firstname + " " + data.lastname}</a></CTableDataCell>
                   <CTableDataCell>{data.aadhaar}</CTableDataCell>
                   <CTableDataCell>{data.email}</CTableDataCell>
                   <CTableDataCell>{data.city}</CTableDataCell>
@@ -98,7 +101,7 @@ const Search = () => {
                       </CDropdownToggle>
                       <CDropdownMenu className="pt-0" placement="bottom-end">
                         <CDropdownHeader className="bg-body-secondary fw-semibold mb-2">Actions</CDropdownHeader>
-                        <CDropdownItem href="/profile">
+                        <CDropdownItem className='pointer'>
                           <CIcon icon={cilPencil} className="me-2" />
                           Edit
                         </CDropdownItem>

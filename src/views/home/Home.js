@@ -30,7 +30,7 @@ const Home = () => {
     if (form.checkValidity() === false) {
       event.stopPropagation()
     } else {
-      navigate('/search', { state: searchedItem })
+      navigate('/records', { state: searchedItem })
     }
     setValidated(true)
   }
