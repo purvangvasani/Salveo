@@ -46,7 +46,7 @@ const Search = () => {
   }
 
   const viewRecordHandler = (idx) => {
-    navigate('/records/view', { id: idx })
+    navigate('/records/view', { state: idx })
   }
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const Search = () => {
               {resultList.length > 0 && resultList.map((data, index) =>
                 <CTableRow key={index}>
                   <CTableHeaderCell scope="row">{index + 1}</CTableHeaderCell>
-                  <CTableDataCell><a className='pointer text-dec-underline' onClick={()=> viewRecordHandler(index)}>{data.firstname + " " + data.lastname}</a></CTableDataCell>
+                  <CTableDataCell><a className='pointer text-dec-underline' onClick={()=> viewRecordHandler(data.aadhaar)}>{data.firstname + " " + data.lastname}</a></CTableDataCell>
                   <CTableDataCell>{data.aadhaar}</CTableDataCell>
                   <CTableDataCell>{data.email}</CTableDataCell>
                   <CTableDataCell>{data.city}</CTableDataCell>

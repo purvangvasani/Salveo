@@ -4,13 +4,34 @@
             "firstname": "Purvang",
             "lastname": "Vasani",
             "aadhaar": 100110011001,
+            "bday": "Feb 16, 1998",
+            "age": 26,
+            "sex": "M",
             "email": "er.purvangvasani@gmail.com",
             "password": "Qwerty@123",
             "address1": "1-Jyotinagar, Kalawad Road",
             "address2": "B/H Crystal Mall",
             "city": "Rajkot",
             "state": "Gujarat",
-            "zip": 360005
+            "zip": 360005,
+            "medicalRecords": [
+                {
+                    "hospitalName": "Lux Skincare and Laser Clinic",
+                    "date": "May 21 2024",
+                    "category": {
+                        "tag": "OPD",
+                        "color": "#018f69"
+                    }
+                },
+                {
+                    "hospitalName": "BT Savani Kidney Hospital",
+                    "date": "March 15 2024",
+                    "category": {
+                        "tag": "Consultancy",
+                        "color": "#018f69"
+                    }
+                }
+            ]
         },
         {
             "firstname": "Dhruvi",

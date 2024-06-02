@@ -182,3 +182,7 @@ CoreUI is an MIT-licensed open source project and is completely free to use. How
 copyright 2024 creativeLabs Łukasz Holeczek.   
 
 Code released under [the MIT license](https://github.com/coreui/coreui-free-react-admin-template/blob/main/LICENSE).
+
+## Timeline feature
+
+https://www.florin-pop.com/blog/2019/04/how-to-create-a-timeline-with-react/
