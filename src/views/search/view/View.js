@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Timeline from '../../timeline/Timeline'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CButton, CCard, CCardBody, CCardHeader, CCardText, CCardTitle, CCol, CRow } from '@coreui/react';
+import { cilPencil, cilTrash } from '@coreui/icons';
+import CIcon from '@coreui/icons-react';
 
 const View = () => {
     const [userRecord, setUserRecord] = useState([]);
@@ -21,7 +23,17 @@ const View = () => {
     return (
         <>
             <CCard>
-                <CCardHeader><b>Patient <small>Details</small></b></CCardHeader>
+                <CCardHeader>
+                    <b>Patient <small>Details</small></b>
+                    <span className='float-end'>
+                        <CButton color="warning">
+                          <CIcon icon={cilPencil} />
+                        </CButton>&nbsp;
+                        <CButton color="danger">
+                          <CIcon icon={cilTrash} />
+                        </CButton>
+                    </span>
+                </CCardHeader>
                 <CCardBody>
                     {/* <CCardTitle>Patient Details</CCardTitle> */}
                     <CCardText>
