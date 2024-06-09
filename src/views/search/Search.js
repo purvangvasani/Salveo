@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { createSearchParams, useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import CIcon from '@coreui/icons-react';
 import { cilPencil, cilSettings, cilTrash, cilUserPlus } from '@coreui/icons';
@@ -22,6 +22,7 @@ const Search = () => {
   const [deleteRecord, setDeleteRecord] = useState({})
 
   const searchedData = useLocation().state;
+  const queryParameters = new URLSearchParams(window.location.search).get("query")
 
   const searchRecords = (records, query) => {
     const queryStr = query.toString().toLowerCase();
@@ -46,13 +47,15 @@ const Search = () => {
   }
 
   const viewRecordHandler = (idx) => {
-    navigate('/records/view', { state: idx })
+    navigate({pathname: '/records/view', search: createSearchParams({
+      id: idx
+    }).toString() })
   }
 
   useEffect(() => {
     async function fetchData() {
       const staticData = await import('../../../data/backend-data.json').then((res) => res.default);
-      searchRecords(staticData.users, searchedData);
+      searchRecords(staticData.users, queryParameters);
     }
     fetchData();
   }, []);
@@ -61,7 +64,7 @@ const Search = () => {
     <>
       <CRow>
         <CCol xs={8} className='gy-4'>
-          Showing results for <b style={{ color: '#6b7785' }}><em>{searchedData}</em></b> !
+          Showing results for <b style={{ color: '#6b7785' }}><em>{queryParameters}</em></b> !
         </CCol>
         <CCol xs={4} className='gy-4'>
           <CButton

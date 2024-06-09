@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   CButton,
   CFormInput,
@@ -10,15 +10,27 @@ import {
 import Typewriter from "typewriter-effect";
 import CIcon from '@coreui/icons-react';
 import { cilSearch } from '@coreui/icons';
-import { useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
+import { UserContext } from '../../App';
 
 const Home = () => {
 
   const [validated, setValidated] = useState(false)
   const [searchedItem, setSearchedItem] = useState('')
+  const { user, setUser } = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const userData = JSON.parse(localStorage.getItem('user'));
+    console.log(userData)
+    if(userData) {
+      setUser(userData);
+    }else{
+      navigate('/login')
+    }
+  }, []);
 
   const handleSearchedChange = (event) => {
     setSearchedItem(event.target.value);
@@ -30,7 +42,10 @@ const Home = () => {
     if (form.checkValidity() === false) {
       event.stopPropagation()
     } else {
-      navigate('/records', { state: searchedItem })
+      let searchParams = createSearchParams({
+        query: searchedItem
+      }).toString();
+      navigate({pathname: '/records', search: searchParams});
     }
     setValidated(true)
   }
@@ -41,7 +56,8 @@ const Home = () => {
         <CCol xs={12} className="text-center">
           <span className="display-3">Welcome to <span style={{ color: '#6b7785' }}>Salveo</span>, </span><br />
           <span className="display-4">
-            <em>
+            {user.name}
+            {/* <em>
               <Typewriter
                 options={{
                   strings: ['Hospital Account!', 'Chemist Account!', 'User Account!'],
@@ -49,7 +65,7 @@ const Home = () => {
                   loop: true,
                 }}
               />
-            </em>
+            </em> */}
           </span>
         </CCol>
         <CRow>

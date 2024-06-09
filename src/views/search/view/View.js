@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Timeline from '../../timeline/Timeline'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { CButton, CCard, CCardBody, CCardHeader, CCardText, CCardTitle, CCol, CRow } from '@coreui/react';
-import { cilPencil, cilTrash } from '@coreui/icons';
+import { CButton, CCard, CCardBody, CCardHeader, CCardText, CCardTitle, 
+    CCol, CRow } from '@coreui/react';
+import { cilPencil, cilPrint, cilTrash } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
 
 const View = () => {
     const [userRecord, setUserRecord] = useState([]);
-    const idx = useLocation().state;
-    const navigate = useNavigate();
-
+    const queryParameters = new URLSearchParams(window.location.search).get("id")
     useEffect(() => {
         async function fetchData() {
             const staticData = await import('../../../../data/backend-data.json').then((res) => res.default);
-            const record = staticData.users.find((x) => x.aadhaar === idx);
-
+            const record = staticData.users.find((x) => x.aadhaar === parseInt(queryParameters));
+            console.log(record)
             setUserRecord(record);
         }
         fetchData();
@@ -26,11 +24,14 @@ const View = () => {
                 <CCardHeader>
                     <b>Patient <small>Details</small></b>
                     <span className='float-end'>
+                        <CButton color="secondary">
+                            <CIcon icon={cilPrint} />
+                        </CButton>&nbsp;
                         <CButton color="warning">
-                          <CIcon icon={cilPencil} />
+                            <CIcon icon={cilPencil} />
                         </CButton>&nbsp;
                         <CButton color="danger">
-                          <CIcon icon={cilTrash} />
+                            <CIcon icon={cilTrash} />
                         </CButton>
                     </span>
                 </CCardHeader>

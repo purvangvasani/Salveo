@@ -1,11 +1,15 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useContext } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 
 // routes config
 import routes from '../routes'
 
+import { UserContext } from '../App';
+
 const AppContent = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <CContainer className="px-4" lg>
       <Suspense fallback={<CSpinner color="primary" />}>
@@ -23,7 +27,11 @@ const AppContent = () => {
               )
             )
           })}
-          <Route path="/" element={<Navigate to="home" replace />} />
+          {Object.keys(user).length === 0 ?
+            <Route path="/" element={<Navigate to="login" replace />} />
+          :
+            <Route path="/" element={<Navigate to="home" replace />} />
+          }
         </Routes>
       </Suspense>
     </CContainer>
