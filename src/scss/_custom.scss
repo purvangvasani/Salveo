@@ -146,6 +146,15 @@
     .timeline-item-content {
         max-width: 100%;
     }
+    .login-logo{
+        width: 350;
+    }
+}
+
+@media only screen and (max-width: 391px) {
+    .login-logo{
+        width: 200;
+    }
 }
 
 @media only screen and (max-width: 767px) {

@@ -10,6 +10,7 @@ import {
   CForm,
   CFormInput,
   CFormSelect,
+  CImage,
   CInputGroup,
   CInputGroupText,
   CRow,
@@ -20,9 +21,9 @@ import { cilDevices, cilLockLocked, cilUser } from '@coreui/icons'
 import { UserContext } from '../../../App';
 
 const userType = [
-  { key: "hospital", value : "Hospital" },
-  { key: "laboratory", value : "Laboratory" },
-  { key: "user", value : "User" }
+  { key: "hospital", value: "Hospital" },
+  { key: "laboratory", value: "Laboratory" },
+  { key: "user", value: "User" }
 ];
 
 const userPass = [
@@ -37,9 +38,9 @@ const Login = () => {
   const [password, setPassword] = useState(userPass[0].password);
 
   const { user, setUser } = useContext(UserContext);
-  
-  useEffect(()=>{
-    if(Object.keys(user).length){
+
+  useEffect(() => {
+    if (Object.keys(user).length) {
       goTo();
     }
   }, []);
@@ -51,14 +52,14 @@ const Login = () => {
 
   const onUserTypeChange = (event) => {
     setUserTypeValue(event.target.value);
-    const data = userPass.find((e)=>e.type === event.target.value);
+    const data = userPass.find((e) => e.type === event.target.value);
     setUserName(data.userName);
     setPassword(data.password);
   }
 
   const onFormSubmit = () => {
     event.preventDefault();
-    const data = userPass.find((e)=>e.type === userTypeValue);
+    const data = userPass.find((e) => e.type === userTypeValue);
     setUser(data);
     localStorage.setItem('user', JSON.stringify(data));
     navigate('/home')
@@ -70,7 +71,7 @@ const Login = () => {
         <CRow className="justify-content-center">
           <CCol md={8}>
             <CCardGroup>
-              <CCard className="p-4">
+              <CCard className="p-4" >
                 <CCardBody>
                   <CForm onSubmit={onFormSubmit}>
                     <h1>Login</h1>
@@ -80,7 +81,7 @@ const Login = () => {
                         <CIcon icon={cilDevices} />
                       </CInputGroupText>
                       <CFormSelect onChange={onUserTypeChange}>
-                        {userType && userType.map((type, index) => 
+                        {userType && userType.map((type, index) =>
                           <option key={index} value={type.key}>{type.value}</option>
                         )}
                       </CFormSelect>
@@ -89,7 +90,7 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" value={userName} onChange={(e)=>setUserName(e.target.value)} />
+                      <CFormInput placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -98,7 +99,7 @@ const Login = () => {
                       <CFormInput
                         type="password"
                         placeholder="Password"
-                        value={password} onChange={(e)=>setPassword(e.target.value)}
+                        value={password} onChange={(e) => setPassword(e.target.value)}
                       />
                     </CInputGroup>
                     <CRow>
@@ -116,19 +117,15 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              <CCard className="text-white py-5" style={{'background-color': '#38B6FF'}}>
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Sign up</h2>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
+                    <CImage
+                      src="src\assets\salveo\salveo-blue-bg.png"
+                      width={300}
+                      className="d-inline-block align-top login-logo"
+                      alt="Salveo"
+                    />
                   </div>
                 </CCardBody>
               </CCard>

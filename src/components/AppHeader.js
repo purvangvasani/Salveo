@@ -14,6 +14,7 @@ import {
   CNavLink,
   CNavItem,
   useColorModes,
+  CImage,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
@@ -44,16 +45,22 @@ const AppHeader = () => {
   }, [])
 
   const currentLocation = useLocation().pathname;
-  
+
   return (
     <CHeader position="sticky" className="mb-4 p-0" ref={headerRef}>
       <CContainer className="border-bottom px-4" fluid>
-        {/* <CHeaderToggler
-          onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
+        <CHeaderToggler
           style={{ marginInlineStart: '-14px' }}
         >
-          <CIcon icon={cilMenu} size="lg" />
-        </CHeaderToggler> */}
+          <CNavLink to="/home" as={NavLink}>
+            <CImage
+              src="src\assets\salveo\salveo.png"
+              width={80}
+              className="d-inline-block align-top login-logo"
+              alt="Salveo"
+            />
+          </CNavLink>
+        </CHeaderToggler>
         {/* <CHeaderNav className="d-none d-md-flex">
           <CNavItem>
             <CNavLink to="/home" as={NavLink}>
@@ -134,7 +141,7 @@ const AppHeader = () => {
           <AppHeaderDropdown />
         </CHeaderNav>
       </CContainer>
-      {currentLocation.split('/')[currentLocation.split('/').length - 1] !== 'home' ? 
+      {currentLocation.split('/')[currentLocation.split('/').length - 1] !== 'home' ?
         <CContainer className="px-4" fluid>
           <AppBreadcrumb />
         </CContainer> : null
