@@ -29,6 +29,7 @@ import {
 
 import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
+import logo from '../assets/salveo/salveo.png';
 
 const AppHeader = () => {
   const headerRef = useRef()
@@ -54,7 +55,7 @@ const AppHeader = () => {
         >
           <CNavLink to="/home" as={NavLink}>
             <CImage
-              src="src\assets\salveo\salveo.png"
+              src={logo}
               width={80}
               className="d-inline-block align-top login-logo"
               alt="Salveo"
