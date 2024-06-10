@@ -32,6 +32,8 @@ const userPass = [
   { type: 'user', userName: 'purvangvasani@salveo.com', name: 'Purvang Vasani', password: 'Pvasani@123' }
 ]
 
+import logo from '../../../assets/salveo/salveo-blue-bg.png';
+
 const Login = () => {
   const [userTypeValue, setUserTypeValue] = useState(userType[0].key);
   const [userName, setUserName] = useState(userPass[0].userName);
@@ -121,7 +123,7 @@ const Login = () => {
                 <CCardBody className="text-center">
                   <div>
                     <CImage
-                      src="src\assets\salveo\salveo-blue-bg.png"
+                      src={logo}
                       width={300}
                       className="d-inline-block align-top login-logo"
                       alt="Salveo"
