@@ -39,14 +39,19 @@ const Login = () => {
   const [userName, setUserName] = useState(userPass[0].userName);
   const [password, setPassword] = useState(userPass[0].password);
 
+  const navigate = useNavigate();
+
+  const userData = JSON.parse(localStorage.getItem('user'));
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if (Object.keys(user).length) {
+    if (userData && userData.name) {
+      setUser(userData);
+    }
+    if ((userData && Object.keys(userData).length) || (user && Object.keys(user).length)) {
       goTo();
     }
   }, []);
-  const navigate = useNavigate();
 
   const goTo = () => {
     navigate('/home')
@@ -59,7 +64,7 @@ const Login = () => {
     setPassword(data.password);
   }
 
-  const onFormSubmit = () => {
+  const onFormSubmit = (evnet) => {
     event.preventDefault();
     const data = userPass.find((e) => e.type === userTypeValue);
     setUser(data);
@@ -119,7 +124,7 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white py-5" style={{'background-color': '#38B6FF'}}>
+              <CCard className="text-white py-5" style={{ 'background-color': '#38B6FF' }}>
                 <CCardBody className="text-center">
                   <div>
                     <CImage
