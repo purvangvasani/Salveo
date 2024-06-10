@@ -45,11 +45,14 @@ const AppBreadcrumb = () => {
 
   return (
     <CBreadcrumb className="my-0">
-      <CBreadcrumbItem href="/">Home</CBreadcrumbItem>&nbsp;/&nbsp;
+      <CBreadcrumbItem href="/home">Home</CBreadcrumbItem>&nbsp;/&nbsp;
       {breadcrumbs.map((breadcrumb, index) => {
         return (
           <div key={index}>
-            <span className={breadcrumb.active ? '' : 'pointer text-dec-underline'}>
+            {/* <span className={breadcrumb.active ? '' : 'pointer text-dec-underline'}>
+              {breadcrumb.name}
+            </span> */}
+            <span>
               {breadcrumb.name}
             </span>
             {index < breadcrumbs.length - 1 && <span>&nbsp;/&nbsp;</span> }
